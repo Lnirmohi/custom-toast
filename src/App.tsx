@@ -1,5 +1,4 @@
 import './App.css';
-// import FeatureCompare from './components/FeatureCompare';
 import ToastContainer from './components/ToastContainer';
 import { toast } from './utils/toastBus';
 
