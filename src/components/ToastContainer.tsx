@@ -1,8 +1,8 @@
 import { memo, useCallback, useEffect, useReducer, useRef, useState } from "react";
-import { toastEventTarget } from "../utils/toastBus";
+import { toastEventTarget, type ToastEventDetail } from "../utils/toastBus";
 import CloseIcon from "../UI/CloseIcon";
 import { animated, useSpring } from "@react-spring/web";
-import { toastReducer, type ToastDetail, type ToastStates } from "./ToastReducer";
+import { toastReducer, type ToastStates } from "./ToastReducer";
 import useToastContext, { ToastContext } from "./ToastContext";
 
 const expiryIndicatorColor: Record<ToastStates, string> = {
@@ -10,7 +10,7 @@ const expiryIndicatorColor: Record<ToastStates, string> = {
   ERROR: 'bg-red-500',
   INFO: 'bg-blue-500'
 };
-const initialState: ToastDetail[] = [];
+const initialState: ToastEventDetail[] = [];
 
 function ToastContainer() {
   const [toasts, dispatch] = useReducer(toastReducer, initialState);
@@ -22,10 +22,10 @@ function ToastContainer() {
     const timeouts = timeoutRef.current;
 
     toastEventTarget.addEventListener('toast', (e) => {
-      const toastEvent = e as CustomEvent<Omit<ToastDetail, 'show'>>;
-      const { msg, id, type } = toastEvent.detail;
+      const toastEvent = e as CustomEvent<ToastEventDetail>;
+      const { msg, id, type, show } = toastEvent.detail;
 
-      dispatch({ type: 'ADD', payload: { msg, id, show: true, type } });
+      dispatch({ type: 'ADD', payload: { msg, id, show, type } });
 
       const timeoutId = setTimeout(() => {
         dispatch({ type: 'HIDE', payload: id });
@@ -59,7 +59,7 @@ function ToastContainer() {
   );
 }
 
-function ToastComponent({ toast, closeToast }: { toast: ToastDetail; closeToast: (id: string) => void }) {
+function ToastComponent({ toast, closeToast }: { toast: ToastEventDetail; closeToast: (id: string) => void }) {
   const {dispatch} = useToastContext();
   const [visible, setVisible] = useState(toast.show);
 
