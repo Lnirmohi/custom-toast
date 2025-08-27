@@ -14,3 +14,41 @@ Inspired by `react-toastify`, this component provides smooth animations, flexibl
 - 🧩 Can display multiple stacked toasts  
 
 ---
+
+## ⚡ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/react-toast-system.git
+cd react-toast-system
+```
+
+### 2. Install dependencies
+This project uses **Vite**, **React 19**, **Tailwind CSS (v4.1)**, and **React Spring**.  
+Run the following to install:
+
+```bash
+npm install
+```
+
+or with Yarn:
+
+```bash
+yarn install
+```
+
+### 3. Start the development server
+```bash
+npm run dev
+```
+
+---
+
+## 🛠️ Tech Stack
+- [React 19](https://react.dev/) – UI Library  
+- [Vite](https://vitejs.dev/) – Fast build tool  
+- [Tailwind CSS (latest)](https://tailwindcss.com/) – Styling  
+- [React Spring](https://www.react-spring.dev/) – Animations  
+
+---
+
