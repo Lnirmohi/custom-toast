@@ -7,11 +7,11 @@ export const ToastContext = createContext<{
   dispatch: ActionDispatch<[action: ToastActions]>
 } | null>(null);
 
-export default function useToastContext(toastContext: typeof ToastContext) {
-  const context = useContext(toastContext);
+export default function useToastContext() {
+  const context = useContext(ToastContext);
 
-  if (context === null) {
-    throw Error('Context not provided');
+  if (!context) {
+    throw new Error("ToastContext not provided");
   }
 
   return context;

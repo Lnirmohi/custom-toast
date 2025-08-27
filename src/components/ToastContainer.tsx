@@ -60,7 +60,7 @@ function ToastContainer() {
 }
 
 function ToastComponent({ toast, closeToast }: { toast: ToastDetail; closeToast: (id: string) => void }) {
-  const {dispatch} = useToastContext(ToastContext);
+  const {dispatch} = useToastContext();
   const [visible, setVisible] = useState(toast.show);
 
   const [styles, api] = useSpring(() => ({
