@@ -1,9 +1,10 @@
 import { createContext, useContext, type ActionDispatch } from "react";
-import { type ToastActions, type ToastDetail } from "./ToastReducer";
+import { type ToastActions } from "./ToastReducer";
+import type { ToastEventDetail } from "../utils/toastBus";
 
 
 export const ToastContext = createContext<{
-  toasts: ToastDetail[],
+  toasts: ToastEventDetail[],
   dispatch: ActionDispatch<[action: ToastActions]>
 } | null>(null);
 
